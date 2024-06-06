@@ -1,0 +1,43 @@
+body, html, #root {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .container-fluid {
+    max-width: 800px; /* Adjust this value as needed */
+    width: 100%;
+  }
+  
+  .input-group {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    flex: 1;
+    margin-right: 10px;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
+  .search-button {
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+  
+  .select-input {
+    margin-bottom: 20px;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 1rem;
+  }
+  

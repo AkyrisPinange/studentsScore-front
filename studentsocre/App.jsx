@@ -7,6 +7,7 @@ import {
   GetAlunosReprovados,
   GetTodosAlunos,
 } from "./src/hooks/useAlunos";
+import './App.css';
 
 const columns = [
   {
@@ -47,7 +48,6 @@ export default function App() {
   useEffect(() => {
     (async () => {
       const todosAlunos = await GetTodosAlunos();
-
       setAlunos(todosAlunos);
     })();
   }, []);
@@ -56,9 +56,9 @@ export default function App() {
     const value = event.target.value;
     let response;
     setIsAprovado(value);
-    if (value == "true") {
+    if (value === "true") {
       response = await GetAlunosAprovados();
-    } else if (value == "false") {
+    } else if (value === "false") {
       response = await GetAlunosReprovados();
     } else {
       response = await GetTodosAlunos();
@@ -68,23 +68,29 @@ export default function App() {
 
   const handleMatricula = async () => {
     const response = await GetAlunosPorMatricula(matricula);
-    setAlunos([response])
+    setAlunos([response]);
   };
-  return (
-    <Container fluid>
-      <h1>Student Score</h1>
 
-      <Input
-        value={matricula}
-        onChange={(event) => setMatricula(event.target.value)}
-      />
-      <Button onClick={handleMatricula}>Pesquisar</Button>
-      <Input type="select" value={isAprovado} onChange={handleAprovodos}>
-        <option value="all">Todos</option>
-        <option value="true">Aprovados</option>
-        <option value="false">Reprovados</option>
-      </Input>
-      <Table data={alunos} columns={columns} />
-    </Container>
+  return (
+    <div className="app-container">
+      <Container fluid>
+        <h1>Student Score</h1>
+        <div className="input-group">
+          <Input
+            className="search-input"
+            placeholder="Enter Matricula"
+            value={matricula}
+            onChange={(event) => setMatricula(event.target.value)}
+          />
+          <Button className="search-button" onClick={handleMatricula}>Pesquisar</Button>
+        </div>
+        <Input type="select" className="select-input" value={isAprovado} onChange={handleAprovodos}>
+          <option value="all">Todos</option>
+          <option value="true">Aprovados</option>
+          <option value="false">Reprovados</option>
+        </Input>
+        <Table data={alunos} columns={columns} />
+      </Container>
+    </div>
   );
 }
